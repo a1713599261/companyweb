@@ -1,0 +1,4 @@
+Django==4.0.6
+django_ckeditor==6.5.0
+django_tinymce==3.4.0
+PyMySQL==1.0.2

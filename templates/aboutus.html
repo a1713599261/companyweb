@@ -1,0 +1,103 @@
+{% extends 'master.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+
+{% block index_title %}
+    <title>深圳金融有限服务公司-关于我们</title>
+{% endblock %}
+      <body>
+      {% block son_content %}
+        <!-- 移动端导航 -->
+    <div class="mask"></div>
+    <div class="sidebar">
+      <ul>
+        <li><a class="" href="{% url 'index' %}">首页</a></li>
+              <li><a class="active" href="{% url 'about' idx=category.0.id %}?index_id=1">{{ category.0.title }}</a></li>
+              <li><a class="" href="{% url 'product' idx=category.1.id %}?index_id=3">{{ category.1.title }}</a></li>
+              <li><a class="" href="{% url 'job' idx=category.2.id %}?index_id=7">{{ category.2.title }}</a></li>
+              <li><a class="" href="{% url 'contact' idx=category.3.id %}?index_id=9">{{ category.3.title }}</a></li>
+      </ul>
+    </div>
+    <div class="main-wrapper main-wrapper-1">
+    <!-- header顶部导航 -->
+    <header>
+      <div class="header-container">
+        <div class="nav-box">
+          <!-- logo -->
+          <div class="nav-left">
+            <a id="logo_top" href="#"></a>
+          </div>
+          <!-- memu选项 -->
+          <div class="nav-mid">
+            <div id="lang">
+              <a href="#"></a>
+            </div>
+            <ul class="navbar-nav">
+              <li><a class="" href="{% url 'index' %}">首页</a></li>
+              <li><a class="active" href="{% url 'about' idx=category.0.id %}?index_id=1">{{ category.0.title }}</a></li>
+              <li><a class="" href="{% url 'product' idx=category.1.id %}?index_id=3">{{ category.1.title }}</a></li>
+              <li><a class="" href="{% url 'job' idx=category.2.id %}?index_id=7">{{ category.2.title }}</a></li>
+              <li><a class="" href="{% url 'contact' idx=category.3.id %}?index_id=9">{{ category.3.title }}</a></li>
+            </ul>
+          </div>
+          <!-- 响应式菜单 -->
+          <div class="nav-mobile-menu">
+              <span class="sidebar_trigger"></span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- advert组件 -->
+    <div class="advert">
+       <h1></h1>
+       <h2></h2>
+    </div>
+    </div>
+    <!-- section -->
+    <section>
+    <div class="box clearfix">
+      <div class="box-left">
+        <div class="title">
+          <h3>{{ category.0.title }}</h3>
+        </div>
+        <ul>
+            {% for foo in sub_cate %}
+                <li><a href="{% url 'about' idx=category.0.id %}?index_id={{ foo.id }}">{{ foo.title}}</a></li>
+                {% empty %}
+                <li>空</li>
+            {% endfor %}
+
+        </ul>
+      </div>
+      <div class="box-right">
+        <div class="box-right-top">
+          <ul>
+            <li>当前位置&nbsp>></li>
+            <li>{{ category.0.title }}&nbsp>></li>
+          {% if index_id == 0 %}
+              <li>{{  sub_cate.0.title }}</li>
+              {% else %}
+              <li>{{  sub_cate.1.title }}</li>
+          {% endif %}
+
+          </ul>
+        </div>
+        <div class="box-right-mid clearfix">
+
+
+            {% if index_id == 0 %}
+            {{ sub_cate.0.detail | safe }}
+                {% else %}
+                {{ sub_cate.1.detail | safe }}
+            {% endif %}
+{#          <h4>企业介绍</h4>#}
+{#          <p>上海联和金融信息服务有限公司是上海市国资委下属的上海联和投资有限公司和专业团队共同出资，于2010年创建成立的。 联和金融是国资控股，市场化模式运营的，专注于金融信息和金融创新的投资孵化器。 目前已孵化业务包括日本可再生能源的投资管理、开发建设及资产证券化；中国资产证券化分析网（CNABS）；私募基金及对冲基金行政管理；海外高端金融咨询服务。</p>#}
+        </div>
+      </div>
+    </div>
+    </section>
+    {% endblock %}
+  </body>
+
+</html>
